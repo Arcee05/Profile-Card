@@ -8,7 +8,7 @@
 .container{
     width: 100%;
     min-height: 100vh;
-    background: linear-gradient(135deg, #6a686863, #060606);
+    background: #060606;
     padding: 10px;
 }
 .card{
@@ -170,3 +170,49 @@
     position: absolute;
     left: 320px;
 }
+
+.glow{
+    height: 515px;
+    width: 350px;
+    background-color: transparent;
+    position: absolute;
+    top: 54%;
+    left: 61.5%;
+    transform: translate(-50%, -50%);
+    border-radius: 15px;
+}
+
+@property --angle{
+    syntax: "<angle>";
+    initial-value: 0deg;
+    inherits: false;
+}
+.front::after, .front::before{
+    --angle: 0deg;
+    content: '';
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    background-image: conic-gradient(from var(--angle), white, transparent 50%, white);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: -1;
+    padding: 5px;
+    border-radius: 15px;
+    animation: 3s spin linear infinite;
+}
+.front::before{
+    filter: blur(1.8rem);
+    opacity: 0.7;
+}
+
+@keyframes spin{
+    from{
+        --angle: 0deg;
+    }
+    to{
+        --angle: 360deg;
+    }
+}
+
